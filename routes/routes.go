@@ -15,7 +15,7 @@ func Setup(app *fiber.App) {
 	app.Put("/api/users/password", controllers.UpdatePassword)
 
 	app.Get("/api/user", controllers.User)
-	app.Get("/api/logout", controllers.Logout)
+	app.Post("/api/logout", controllers.Logout)
 
 	app.Get("/api/users", controllers.AllUsers)
 	app.Post("/api/users", controllers.CreateUser)
@@ -31,15 +31,27 @@ func Setup(app *fiber.App) {
 
 	app.Get("/api/permissions", controllers.AllPermissions)
 
-	app.Get("/api/products", controllers.AllProducts)
-	app.Post("/api/products", controllers.CreateProduct)
-	app.Get("/api/products/:id", controllers.GetProduct)
-	app.Put("/api/products/:id", controllers.UpdateProduct)
-	app.Delete("/api/products/:id", controllers.DeleteProduct)
+	app.Get("/api/posts", controllers.AllPosts)
+	app.Post("/api/posts", controllers.CreatePost)
+	app.Get("/api/posts/:id", controllers.GetPost)
+	app.Put("/api/posts/:id", controllers.UpdatePost)
+	app.Delete("/api/posts/:id", controllers.DeletePost)
 
 	app.Post("/api/upload", controllers.Upload)
 	app.Static("/api/uploads", "./uploads")
 
 	app.Get("/api/orders", controllers.AllOrders)
 	app.Post("/api/export", controllers.Export)
+
+	app.Get("/api/comments", controllers.AllComments)
+	app.Post("/api/comments", controllers.CreateComment)
+	app.Get("/api/comments/:id", controllers.GetComment)
+	app.Put("/api/comments/:id", controllers.UpdateComment)
+	app.Delete("/api/comments/:id", controllers.DeleteComment)
+
+	app.Get("/api/threads", controllers.AllThreads)
+	app.Post("/api/threads", controllers.CreateThread)
+	app.Get("/api/threads/:id", controllers.GetThread)
+	app.Put("/api/threads/:id", controllers.UpdateThread)
+	app.Delete("/api/threads/:id", controllers.DeleteThread)
 }

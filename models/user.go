@@ -16,7 +16,7 @@ type User struct {
 }
 
 func (user *User) SetPassword(password string) {
-	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte("1234"), 14)
+	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), 14)
 	user.Password = hashedPassword
 }
 
@@ -32,9 +32,9 @@ func (user *User) Count(db *gorm.DB) int64 {
 }
 
 func (user *User) Take(db *gorm.DB, limit int, offset int) interface{} {
-	var products []User
+	var users []User
 
-	db.Preload("Role").Offset(offset).Limit(limit).Find(&products)
+	db.Preload("Role").Offset(offset).Limit(limit).Find(&users)
 
-	return products
+	return users
 }
