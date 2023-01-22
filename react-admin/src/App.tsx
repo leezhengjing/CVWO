@@ -18,6 +18,7 @@ import PostCreate from './pages/posts/PostCreate';
 import { Threads } from './pages/threads/Threads';
 import ThreadCreate from './pages/threads/ThreadCreate';
 import PostEdit from './pages/posts/PostEdit';
+import Profile from './pages/Profile';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/users" element={<Users />} />
