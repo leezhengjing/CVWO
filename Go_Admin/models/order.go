@@ -31,7 +31,7 @@ func (order *Order) Count(db *gorm.DB) int64 {
 	return total
 }
 
-func (order *Order) Take(db *gorm.DB, limit int, offset int) interface{} {
+func (order *Order) Take(db *gorm.DB, limit int, offset int, filter int) interface{} {
 	var orders []Order
 
 	db.Preload("OrderItems").Offset(offset).Limit(limit).Find(&orders)

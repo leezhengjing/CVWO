@@ -30,7 +30,7 @@ const UserEdit = (props: any) => {
                 setRoleId(data.role.id);
             }
         )()
-    }, [id])
+    }, [])
 
     const submit = async (e: SyntheticEvent) => {
         e.preventDefault();

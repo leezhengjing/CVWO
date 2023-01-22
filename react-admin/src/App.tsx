@@ -16,6 +16,8 @@ import RoleEdit from './pages/roles/RoleEdit';
 import Posts from './pages/posts/Posts';
 import PostCreate from './pages/posts/PostCreate';
 import { Threads } from './pages/threads/Threads';
+import ThreadCreate from './pages/threads/ThreadCreate';
+import PostEdit from './pages/posts/PostEdit';
 
 
 function App() {
@@ -34,8 +36,10 @@ function App() {
           <Route path="/roles/:id/edit" element={<RoleEdit />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/create" element={<PostCreate />} />
+          <Route path="/posts/threads/:id/" element={<Posts />} />
+          <Route path="/posts/:id/edit" element={<PostEdit />} />
           <Route path="/threads" element={<Threads />} />
-          <Route path="/threads/create" element={<PostCreate />} />
+          <Route path="/threads/create" element={<ThreadCreate />} />
         </Routes>
       </BrowserRouter>
     </div >

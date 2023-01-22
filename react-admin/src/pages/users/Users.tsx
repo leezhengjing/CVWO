@@ -18,6 +18,7 @@ const Users = () => {
 
                 setUsers(data.data);
                 setLastPage(data.meta.last_page)
+
             }
         )()
     }, [page])

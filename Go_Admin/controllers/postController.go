@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"strconv"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/leezhengjing/go_admin/database"
@@ -11,7 +12,7 @@ import (
 func AllPosts(c *fiber.Ctx) error {
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 
-	return c.JSON(models.Paginate(database.DB, &models.Post{}, page))
+	return c.JSON(models.Paginate(database.DB, &models.Post{}, page, 0))
 }
 
 func CreatePost(c *fiber.Ctx) error {
@@ -20,6 +21,9 @@ func CreatePost(c *fiber.Ctx) error {
 	if err := c.BodyParser(&product); err != nil {
 		return err
 	}
+
+	product.CreatedAt = time.Now().Format("02/01/2006 15:04:05")
+	product.UpdatedAt = time.Now().Format("02/01/2006 15:04:05")
 
 	database.DB.Create(&product)
 
@@ -49,6 +53,8 @@ func UpdatePost(c *fiber.Ctx) error {
 		return err
 	}
 
+	post.UpdatedAt = time.Now().Format("02/01/2006 15:04:05")
+
 	database.DB.Model(&post).Updates(post)
 
 	return c.JSON(post)
@@ -64,4 +70,15 @@ func DeletePost(c *fiber.Ctx) error {
 	database.DB.Delete(&post)
 
 	return nil
+}
+
+func FilterPost(c *fiber.Ctx) error {
+
+	// Paginated
+	page, _ := strconv.Atoi(c.Query("page", "1"))
+
+	id, _ := strconv.Atoi(c.Params("id"))
+
+	return c.JSON(models.Paginate(database.DB, &models.Post{}, page, id))
+
 }

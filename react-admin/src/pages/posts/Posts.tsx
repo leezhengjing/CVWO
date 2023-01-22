@@ -5,19 +5,33 @@ import { useParams } from 'react-router-dom';
 import Paginator from '../../components/Paginator';
 import Wrapper from '../../components/Wrapper';
 import { Post } from '../../models/post';
+import { Thread } from '../../models/thread';
 
 const Posts = () => {
+    let id: any = useParams();
+    let threadId: any = parseInt(id.id);
+
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
     const [lastPage, setLastPage] = useState(0);
+    const [threads, setThreads] = useState([]);
 
     useEffect(() => {
         (
             async () => {
-                const { data } = await axios.get(`posts?page=${page}`);
+                const { data } = isNaN(threadId)
+                    // When there is no threadId, show all pages
+                    ? await axios.get(`posts?page=${page}`)
+                    // When there is threadId, only show pages associated with the threadId
+                    : await axios.get(`posts/threads/${threadId}?page=${page}`)
+
 
                 setPosts(data.data);
                 setLastPage(data.meta.last_page);
+
+                const response = await axios.get(`threads`)
+                setThreads(response.data)
+
             }
         )()
     }, [page])

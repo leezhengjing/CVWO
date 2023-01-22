@@ -32,11 +32,14 @@ func (post *Post) Count(db *gorm.DB) int64 {
 	return total
 }
 
-func (post *Post) Take(db *gorm.DB, limit int, offset int) interface{} {
+func (post *Post) Take(db *gorm.DB, limit int, offset int, filter int) interface{} {
 	var posts []Post
 
-	db.Offset(offset).Limit(limit).Find(&posts)
-
+	if filter == 0 {
+		db.Preload("Comments").Offset(offset).Limit(limit).Find(&posts)
+	} else {
+		db.Preload("Comments").Offset(offset).Limit(limit).Where("thread_id = ?", filter).Find(&posts)
+	}
 	// for i, _ := range posts {
 	// 	posts[i].LikeCount = len(posts[i].Likes)
 	// 	posts[i].CommentCount = len(posts[i].Comments)

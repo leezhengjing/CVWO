@@ -16,7 +16,7 @@ func AllUsers(c *fiber.Ctx) error {
 
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 
-	return c.JSON(models.Paginate(database.DB, &models.User{}, page))
+	return c.JSON(models.Paginate(database.DB, &models.User{}, page, 0))
 }
 
 func CreateUser(c *fiber.Ctx) error {

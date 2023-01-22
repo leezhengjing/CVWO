@@ -37,7 +37,7 @@ export const Threads = () => {
                             return (
                                 <tr key={thread.id}>
                                     <td>{thread.id}</td>
-                                    <td><Link to="/posts" >{thread.name}</Link></td>
+                                    <td><Link to={`/posts/threads/${thread.id}`} >{thread.name}</Link></td>
                                 </tr>
                             )
                         })}
