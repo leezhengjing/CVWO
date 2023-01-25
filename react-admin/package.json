@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chrisoakman/chessboardjs": "^1.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,7 +14,10 @@
     "@types/react-dom": "^18.0.10",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.2.2",
+    "chess.js": "^1.0.0-beta.2",
+    "chessboardjsx": "^2.4.7",
     "react": "^18.2.0",
+    "react-chess-analysis-board": "^0.0.19",
     "react-chessboard": "^2.0.8",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.2",
@@ -44,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/chess.js": "^0.13.4"
   }
 }

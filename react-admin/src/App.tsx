@@ -19,6 +19,7 @@ import { Threads } from './pages/threads/Threads';
 import ThreadCreate from './pages/threads/ThreadCreate';
 import PostEdit from './pages/posts/PostEdit';
 import Profile from './pages/Profile';
+import Post from './pages/posts/Post';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/create" element={<PostCreate />} />
           <Route path="/posts/threads/:id/" element={<Posts />} />
+          <Route path="/posts/:id" element={<Post />} />
           <Route path="/posts/:id/edit" element={<PostEdit />} />
           <Route path="/threads" element={<Threads />} />
           <Route path="/threads/create" element={<ThreadCreate />} />

@@ -48,7 +48,7 @@ const Posts = () => {
     return (
         <Wrapper>
             <div className="pt-3 pb-2 mb-3 border-bottom">
-                <Link to="/posts/create" className="btn btn-sm btn-outline-secondary">Add</Link>
+                <Link to="/posts/create" className="btn btn-sm btn-outline-secondary">Create New    Post</Link>
             </div>
             <div className="table-responsive">
                 <table className="table table-striped table-sm">
@@ -67,7 +67,7 @@ const Posts = () => {
                                 <tr key={p.id}>
                                     <td>{p.id}</td>
                                     <td><img src={p.image} width="50" /></td>
-                                    <td>{p.title}</td>
+                                    <td><Link to={`/posts/${p.id}`} >{p.title}</Link></td>
                                     <td>{p.body}</td>
                                     <td>
                                         <div className="btn-group mr-2">

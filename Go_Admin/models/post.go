@@ -9,6 +9,7 @@ type Post struct {
 	Image        string     `json:"image"`
 	LikeCount    int        `json:"like_count" gorm:"-"`
 	CommentCount int        `json:"comment_count" gorm:"-"`
+	GamePGN      string     `json:"game_pgn"`
 	UpdatedAt    string     `json:"updated_at"`
 	CreatedAt    string     `json:"created_at"`
 	UserId       uint       `json:"user_id"`                             //Users

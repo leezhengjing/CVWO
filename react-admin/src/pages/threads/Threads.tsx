@@ -21,7 +21,7 @@ export const Threads = () => {
     return (
         <Wrapper>
             <div className="pt-3 pb-2 mb-3 border-bottom">
-                <Link to="/threads/create" className="btn btn-sm btn-outline-secondary">Add</Link>
+                <Link to="/threads/create" className="btn btn-sm btn-outline-secondary">Add Thread</Link>
             </div>
 
             <div className="table-responsive">

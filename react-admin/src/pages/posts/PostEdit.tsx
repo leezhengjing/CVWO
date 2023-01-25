@@ -12,6 +12,7 @@ const PostEdit = () => {
     const [thread_id, setThreadId] = useState('1');
     const [threads, setThreads] = useState([]);
     const [user_id, setUserId] = useState();
+    const [game_pgn, setGamePgn] = useState('');
     const [redirect, setRedirect] = useState(false);
 
     const ref = useRef<HTMLInputElement>(null);
@@ -27,6 +28,7 @@ const PostEdit = () => {
                 setBody(response.data.body);
                 setImage(response.data.image);
                 setThreadId(response.data.thread_id);
+                setGamePgn(response.data.game_pgn)
 
                 const { data } = await axios.get('threads');
 
@@ -53,7 +55,8 @@ const PostEdit = () => {
             body,
             image,
             user_id: Number(user_id),
-            thread_id: Number(thread_id)
+            thread_id: Number(thread_id),
+            game_pgn,
         });
 
         setRedirect(true);
@@ -85,6 +88,12 @@ const PostEdit = () => {
                     <textarea className="form-control"
                         defaultValue={body}
                         onChange={e => setBody(e.target.value)} />
+                </div>
+                <div className='mb-3'>
+                    <label>Game PGN - Please upload the moves only</label>
+                    <textarea className="form-control"
+                        defaultValue={game_pgn}
+                        onChange={e => setGamePgn(e.target.value)} />
                 </div>
                 <div className='input-group'>
                     <input className="form-control"

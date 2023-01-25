@@ -12,6 +12,7 @@ const PostCreate = () => {
     const [thread_id, setThreadId] = useState('1');
     const [threads, setThreads] = useState([]);
     const [user_id, setUserId] = useState();
+    const [game_pgn, setGamePgn] = useState('');
     const [redirect, setRedirect] = useState(false);
 
     const ref = useRef<HTMLInputElement>(null);
@@ -38,7 +39,8 @@ const PostCreate = () => {
             body,
             image,
             user_id: Number(user_id),
-            thread_id: Number(thread_id)
+            thread_id: Number(thread_id),
+            game_pgn,
         });
 
         setRedirect(true);
@@ -68,6 +70,11 @@ const PostCreate = () => {
                     <label>Body</label>
                     <textarea className="form-control"
                         onChange={e => setBody(e.target.value)} />
+                </div>
+                <div className='mb-3'>
+                    <label>Game PGN - Please copy paste the moves only</label>
+                    <textarea className="form-control"
+                        onChange={e => setGamePgn(e.target.value)} />
                 </div>
                 <div className='mb-3'>
                     <label>Image</label>
