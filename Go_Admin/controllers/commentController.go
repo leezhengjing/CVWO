@@ -2,18 +2,14 @@ package controllers
 
 import (
 	"strconv"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/leezhengjing/go_admin/database"
-	"github.com/leezhengjing/go_admin/middlewares"
 	"github.com/leezhengjing/go_admin/models"
 )
 
 func AllComments(c *fiber.Ctx) error {
-	if err := middlewares.IsAuthorized(c, "comments"); err != nil {
-		return err
-	}
-
 	// Paginated
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 
@@ -21,15 +17,14 @@ func AllComments(c *fiber.Ctx) error {
 }
 
 func CreateComment(c *fiber.Ctx) error {
-	if err := middlewares.IsAuthorized(c, "comments"); err != nil {
-		return err
-	}
-
 	var comment models.Comment
 
 	if err := c.BodyParser(&comment); err != nil {
 		return err
 	}
+
+	comment.CreatedAt = time.Now().Format("02/01/2006 15:04:05")
+	comment.UpdatedAt = time.Now().Format("02/01/2006 15:04:05")
 
 	database.DB.Create(&comment)
 
@@ -37,9 +32,6 @@ func CreateComment(c *fiber.Ctx) error {
 }
 
 func GetComment(c *fiber.Ctx) error {
-	if err := middlewares.IsAuthorized(c, "comments"); err != nil {
-		return err
-	}
 	// Getting the id from the url
 	id, _ := strconv.Atoi(c.Params("id"))
 
@@ -53,15 +45,13 @@ func GetComment(c *fiber.Ctx) error {
 }
 
 func UpdateComment(c *fiber.Ctx) error {
-	if err := middlewares.IsAuthorized(c, "comments"); err != nil {
-		return err
-	}
 
 	id, _ := strconv.Atoi(c.Params("id"))
 
 	comment := models.Comment{
 		Id: uint(id),
 	}
+	comment.UpdatedAt = time.Now().Format("02/01/2006 15:04:05")
 
 	if err := c.BodyParser(&comment); err != nil {
 		return err
@@ -73,10 +63,6 @@ func UpdateComment(c *fiber.Ctx) error {
 }
 
 func DeleteComment(c *fiber.Ctx) error {
-	if err := middlewares.IsAuthorized(c, "comments"); err != nil {
-		return err
-	}
-
 	id, _ := strconv.Atoi(c.Params("id"))
 
 	comment := models.Comment{
